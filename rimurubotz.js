@@ -348,19 +348,6 @@ if (q.length > 130) return reply("text terlalu panjang")
 await rimurubotz.updateProfileStatus(q)
 only("sukses", rimurubotz, from)
 break
-case 'join': 
-if (cekUser("id", sender) == null) return Notdaftar()
-if (!isOwner) return only("isOwner"), rimurubotz, from)
-if (!q) return reply("Masukkan Link Group!")
-if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply("Link Invalid!")
-let result = args[0].split('https://chat.whatsapp.com/')[1]
-await rimurubotz.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-break
-case 'leave': 
-if (cekUser("id", sender) == null) return Notdaftar()
-if (!isOwner) return only("isOwner"), rimurubotz, from)
-await rimurubotz.groupLeave(from).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
-break
 case 'setnamabot': case 'setnamebot': 
 if (cekUser("id", sender) == null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
@@ -427,7 +414,7 @@ download("sticker", "toimgg").then(x => { sendMedia("image", "./media/toimgg.web
 break
 case 'script': 
 if (cekUser("id", sender) == null) return Notdaftar()
-reply("https://youtube.com/channel/UCeQaKIQQhDNHMOq_odQh5Sw")
+reply("https://github.com/KhaerilZ/Script-Bot")
 break
 case 'confes': case 'menfes': case 'confess': case 'menfess':
 if (cekUser("id", sender) == null) return Notdaftar()
@@ -818,7 +805,7 @@ if (budy == "Assalamualaikum" || budy == "assalamualaikum"){
 reply("Waalaikumsalam❤")
 } // AUTORESPODER 
 if (budy == "bot" || budy == "Bot" || budy == "BOT"  || budy == "p" || budy == "P") {
-reply(`[ *BOT-NOTIF* ]\nYa? *${namabot}* Disini, Ada yang bisa saya bantu? Gunakan command #menu untuk melihat apa saja yang bisa saya lakukan,\n• *Owner* : Bot ini di buat dengan ❤ Oleh ${namaowner}`)
+reply(`pa pe pa pe, Salam Kek`)
 }
 
 
