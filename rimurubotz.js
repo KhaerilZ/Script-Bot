@@ -351,7 +351,7 @@ break
 case 'join': 
 if (cekUser("id", sender) == null) return Notdaftar()
 if (!isOwner) return only("isOwner"), rimurubotz, from)
-if (!q) throw 'Masukkan Link Group!'
+if (!q) return reply("Masukkan Link Group!")
 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
 let result = args[0].split('https://chat.whatsapp.com/')[1]
 await rimurubotz.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
