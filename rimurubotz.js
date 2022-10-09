@@ -14,7 +14,7 @@ const packagejson = JSON.parse(fs.readFileSync('./package.json'));
 const { owner, namabot, namaowner, donasi, fakereply } = require("./admin/config.json")
 const toMs = require('ms')
 const user = JSON.parse(fs.readFileSync('./lib/data.json')); 
-const { getBuffer, fetchJson, fetchText, getRandom, getGroupAdmins, runtime, sleep, makeid } = require("./lib/myfunc");
+const { getBuffer, fetchJson, fetchText, getRandom, getGroupAdmins, isUrl, runtime, sleep, makeid } = require("./lib/myfunc");
 const { only } = require("./lib/respoder")
 const { help } = require("./admin/help")
 const { setUser} = require("./lib/user")
@@ -347,6 +347,20 @@ if (!q) return reply("Masukkan text")
 if (q.length > 130) return reply("text terlalu panjang")
 await rimurubotz.updateProfileStatus(q)
 only("sukses", rimurubotz, from)
+break
+case 'join': 
+if (cekUser("id", sender) == null) return Notdaftar()
+if (!isOwner) return only("isOwner"), rimurubotz, from)
+if (!q) throw 'Masukkan Link Group!'
+if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
+let result = args[0].split('https://chat.whatsapp.com/')[1]
+await rimurubotz.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+
+break
+case 'leave': 
+if (cekUser("id", sender) == null) return Notdaftar()
+if (!isOwner) return only("isOwner"), rimurubotz, from)
+await rimurubotz.groupLeave(from).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 break
 case 'setnamabot': case 'setnamebot': 
 if (cekUser("id", sender) == null) return Notdaftar()
