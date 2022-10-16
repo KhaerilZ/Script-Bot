@@ -142,7 +142,7 @@ break
 case 'owner':
 if (cekUser("id", sender) == null) return Notdaftar()
 sendMedia("vcard", namaowner, owner)
-reply("Tuh")
+reply("☕")
 break
 case 'daftar': case 'login':
 if (cekUser("id", sender) !== null) return reply("Kamu sudah terdaftar sebelumnya")
@@ -802,9 +802,12 @@ if (budy.includes("xyz")) { reply("Huh?") }
 if (budy.includes("herokuapp")) { reply("Huh?") } 
 }
 if (budy == "Assalamualaikum" || budy == "assalamualaikum"){
-reply("Waalaikumsalam❤")
-} // AUTORESPODER 
-if (budy == "bot" || budy == "Bot" || budy == "BOT"  || budy == "p" || budy == "P") {
+reply("Waalaikumsalam")
+} // AUTORESPODER
+if (budy == "bot" || budy == "Bot" || budy == "BOT"){
+reply(`Ya kenapa?`)
+}
+if (budy == "p" || budy == "P") {
 reply(`pa pe pa pe, Salam Kek`)
 }
 
