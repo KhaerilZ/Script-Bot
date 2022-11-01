@@ -810,6 +810,9 @@ reply(`Ya kenapa?`)
 if (budy == "p" || budy == "P") {
 reply(`pa pe pa pe, Salam Kek`)
 }
+if (budy == "salam" || budy == "Salam") {
+reply(`Nah gitu, Salam Bro!`)
+}
 
 
 
