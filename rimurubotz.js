@@ -142,7 +142,6 @@ break
 case 'owner':
 if (cekUser("id", sender) !== null) return Notdaftar()
 sendMedia("vcard", namaowner, owner)
-reply("☕")
 break
 case 'daftar': case 'login':
 if (cekUser("id", sender) !== null) return reply("Kamu sudah terdaftar sebelumnya")
@@ -799,13 +798,13 @@ if (budy == "Assalamualaikum" || budy == "assalamualaikum"){
 reply("Waalaikumsalam")
 } // AUTORESPODER
 if (budy == "bot" || budy == "Bot" || budy == "BOT"){
-reply(`Ya kenapa?`)
+reply(`bot is active`)
 }
 if (budy == "p" || budy == "P") {
-reply(`pa pe pa pe, Salam Kek`)
+reply(`pa pe pa pe, Utamakan Salam Bro`)
 }
 if (budy == "salam" || budy == "Salam") {
-reply(`Nah gitu, Salam Bro!`)
+reply(`Nah gitu`)
 }
 
 
