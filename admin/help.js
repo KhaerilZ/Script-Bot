@@ -10,11 +10,9 @@ menu2 += `┃• *${z + menu1[i]}*\n` })
 var menu3 = `╭━─━•[ *${y}* ]⊱\n${menu2}╰━─━─━─━─━─━─━─•`
 return menu3
 }
-const help = (prefix, reply, cekUser, namabot, sender) => {
+const help = (prefix, reply, namabot, sender) => {
 var help1 = `╭━─━•[ *${namabot}* ]⊱
 ┃• *User* : @${sender.split("@")[0]}
-┃• *Ban* : ${cekUser("ban", sender)}
-┃• *Premium* : ${cekUser("premium", sender)}
 ╰━─━─━─━─━─━─━─•
 ${menu(listmenu.simple, "SIMPLE", prefix)}
 ${menu(listmenu.group, "GROUP", prefix)}
@@ -33,7 +31,7 @@ ${menu(listmenu.creatiftag, "CREATIF(TAG)", prefix)}
 ${menu(listmenu.ttp, "TTP(COLORS)", prefix)}`
 // JANGAN UBAH/HAPUS THX TO🤥
 var cr = `╭━─━•[ *THX-TO* ]⊱
-┃•  *RIMURU*
+┃•  *zianzuKHZ*
 ╰━─━─━─━─━─━─━─•`
 return help1
 }
