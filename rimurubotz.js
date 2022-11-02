@@ -88,7 +88,7 @@ var _0x135601=_0x2036;(function(_0x4c8fb7,_0x5e4fd1){var _0x1e1f1b=_0x2036,_0x4c
 switch (command) { 
  
 case 'afk':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (cekUser("afk", sender) == true) return reply("Kamu Telah afk sebelumnya")
 if (!q) return reply("Masukkan alasan Apa kamu afk")
 reply(`[ *SUKSES AFK* ]\n• *User* : @${sender.split("@")[0]}\n• *Alasan* : ${q}\n\n~> [🤖] : Saya akan merespon jika ada yang mengTag @ anda, Saya juga menunggu anda kembali❤`)
@@ -140,23 +140,17 @@ reply('_Kirim gambar/video dengan caption !sticker/ reply gambar/video dengan pe
 }} catch (e) {only("error", rimurubotz, from)}
 break
 case 'owner':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 sendMedia("vcard", namaowner, owner)
 reply("☕")
 break
 case 'daftar': case 'login':
 if (cekUser("id", sender) !== null) return reply("Kamu sudah terdaftar sebelumnya")
-user.push({ id: sender, emote: "❤", timers: moment().format('LLL'), hit: 0, star: 1, afk: false, alasan:false, ban: false, premium: false })
-fs.writeFileSync('./lib/data.json', JSON.stringify(user, null, 2))
-reply(`[ *NEW INFO* ] 
-• *User* : ${sender.split("@")[0]}
-• *Premium* : false
-• *Afk* : false
-~> [🤖] : Selamat @${sender.split("@")[0]} Anda berhasil bergabung ke database bot pada ${moment().format('LLL')}`)
+reply("_Fitur *Daftar* Sudah di hapus silahkan #menu untuk memulai bot😊_")
 break
 
 case 'delete':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup){
 if (m.messages[0].isQuotedMsg == false) return reply("tag Pesan")
 if (m.messages[0].quotedMsg.sender !== botNumber) return reply("Hanya bisa menghapus pesan bot, ... Silahkan reply pesan bot")
@@ -173,7 +167,7 @@ await rimurubotz.sendMessage(from, { delete: m.messages[0].quotedMsg })
 only("sukses", rimurubotz, from)}}
 break
 case 'kick': case 'remove':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -182,7 +176,7 @@ rimurubotz.sendMessage(from, {text:`Byeee Byeee @${Tag()[0].split("@")[0]}`, men
 await rimurubotz.groupParticipantsUpdate(from, Tag(), "remove").catch(e => {only("error", rimurubotz, from)})
 break
 case 'kicktime': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -211,7 +205,7 @@ rimurubotz.sendMessage(from, {text:`[ *KICK-TIMERS* ]\nWaktu habis, Bye Byee!! @
 }
 break
 case 'add': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -221,7 +215,7 @@ if (nyz.isValid == false) return reply("Nomer Yang anda masukkan tidak valid, La
 await rimurubotz.groupParticipantsUpdate(from, [nyz.phoneNumber.split("+")[1] + "@s.whatsapp.net"], "add").catch(e => {only("error", rimurubotz, from)})
 break
 case 'promote':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -230,7 +224,7 @@ rimurubotz.sendMessage(from, {text:`Selamat @${Tag()[0].split("@")[0]} Anda seka
 await rimurubotz.groupParticipantsUpdate(from, Tag(), "promote").catch(e => {only("error", rimurubotz, from)})
 break
 case 'demote':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -239,7 +233,7 @@ rimurubotz.sendMessage(from, {text:`Yahhh @${Tag()[0].split("@")[0]} Anda sekara
 await rimurubotz.groupParticipantsUpdate(from, Tag(), "demote").catch(e => {only("error", rimurubotz, from)})
 break 
 case 'setname': case 'setsubject': case 'updatename':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -249,7 +243,7 @@ await rimurubotz.groupUpdateSubject(from, q)
 only("sukses", rimurubotz, from)
 break
 case 'setdesk': case 'setdeks': case 'updatedesk':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -259,7 +253,7 @@ await rimurubotz.groupUpdateDescription(from, q)
 only("sukses", rimurubotz, from)
 break 
 case 'tutup': case 'close': case 'closegroup':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -267,7 +261,7 @@ await rimurubotz.groupSettingUpdate(from, 'announcement')
 only("sukses", rimurubotz, from)
 break
 case 'open': case 'buka': case 'opengroup':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -275,7 +269,7 @@ await rimurubotz.groupSettingUpdate(from, 'not_announcement')
 only("sukses", rimurubotz, from)
 break
 case 'unlocked': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -283,7 +277,7 @@ await rimurubotz.groupSettingUpdate(from, 'unlocked')
 only("sukses", rimurubotz, from)
 break
 case 'locked': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -291,7 +285,7 @@ await rimurubotz.groupSettingUpdate(from, 'locked')
 only("sukses", rimurubotz, from)
 break
 case 'linkgc': case 'linkgrup': case 'linkgrub': case 'linkgroup': case 'getlink':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -299,7 +293,7 @@ var nyz = await rimurubotz.groupInviteCode(from)
 reply("[ *GROUP-CODE(LINK)* ]\nhttps://chat.whatsapp.com/" + nyz)
 break
 case 'revoke': case 'risetlink': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -307,7 +301,7 @@ await rimurubotz.groupRevokeInvite(from)
 only("sukses", rimurubotz, from)
 break
 case 'welcome':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -324,7 +318,7 @@ dataOnly("welcome", "remove", from)
 } else { rimurubotz.sendMessage(from, {text: "[ *WELCOME* ]", buttonText: "OPEN", sections: [{title: "PILIH", rows: [{title: "WELCOME (AKTIF)", rowId: prefix + command + " aktif"},{title: "WELCOME (NONAKTIF)", rowId: prefix + command + " nonaktif"} ]}]}) } 
 break
 case 'antilink':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
@@ -341,7 +335,7 @@ dataOnly("antilink", "remove", from)
 } else { rimurubotz.sendMessage(from, {text: "[ *ANTILINK* ]", buttonText: "OPEN", sections: [{title: "PILIH", rows: [{title: "ANTILINK (AKTIF)", rowId: prefix + command + " aktif"},{title: "ANTILINK (NONAKTIF)", rowId: prefix + command + " nonaktif"} ]}]}) } 
 break
 case 'setstatus': case 'updatestatus':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan text")
 if (q.length > 130) return reply("text terlalu panjang")
@@ -349,7 +343,7 @@ await rimurubotz.updateProfileStatus(q)
 only("sukses", rimurubotz, from)
 break
 case 'setnamabot': case 'setnamebot': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan text")
 if (q.length > 24) return reply("text terlalu panjang")
@@ -357,7 +351,7 @@ await rimurubotz.updateProfileName(q)
 only("sukses", rimurubotz, from)
 break
 case 'getpp': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (Tag() == "") return reply("tag Orang")
 if (!isOwner) return only("isOwner", rimurubotz, from)
@@ -365,7 +359,7 @@ try{ var nyz = await rimurubotz.profilePictureUrl(Tag()[0], 'image') } catch (e)
 rimurubotz.sendMessage(from, {image:{url:nyz}, caption:"xxx", mentions:[sender]},{quoted:nay1})
 break
 case 'block': case 'ban': case 'banned':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (Tag() == "") return reply("tag Orang")
 if (!isOwner) return only("isOwner", rimurubotz, from)
@@ -374,7 +368,7 @@ setUser("±ban", `${Tag()[0]}`, true)
 only("sukses", rimurubotz, from)
 break 
 case 'unblock': case 'unban': case 'unbanned':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (Tag() == "") return reply("tag Orang")
 if (!isOwner) return only("isOwner", rimurubotz, from)
@@ -383,7 +377,7 @@ setUser("±ban", `${Tag()[0]}`, false)
 only("sukses", rimurubotz, from)
 break  
 case 'creategroup':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan text")
 const group = await rimurubotz.groupCreate(q, [owner + "@s.whatsapp.net"])
@@ -391,7 +385,7 @@ only("sukses", rimurubotz, from)
 rimurubotz.sendMessage(group.id, { text: 'Halo!!' }) // say hello to everyone on the group
 break
 case 'plusstar':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (Tag() == "") return reply("tag Orang")
 if (!isOwner) return only("isOwner", rimurubotz, from)
@@ -399,7 +393,7 @@ only("sukses", rimurubotz, from)
 setUser("+star", `${Tag()[0]}`, 1)
 break 
 case 'minusstar':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (Tag() == "") return reply("tag Orang")
 if (!isOwner) return only("isOwner", rimurubotz, from)
@@ -407,17 +401,17 @@ only("sukses", rimurubotz, from)
 setUser("-star", `${Tag()[0]}`, 1)
 break
 case 'toimg':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedSticker) { 
 download("sticker", "toimgg").then(x => { sendMedia("image", "./media/toimgg.webp", "SUKSES") })
 } else { reply("Reply Sticker")}
 break
 case 'script': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 reply("https://github.com/KhaerilZ/Script-Bot")
 break
 case 'confes': case 'menfes': case 'confess': case 'menfess':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q1 && !q2 && !q3) return reply(`> Masukkan\n${prefix + command} Nomer&Nama&Pesan\n\n> Contoh?\n${prefix + command} 62xxx&Asep&Halo`)
 var nyz = phone('+' + q1);
 if (nyz.isValid == false) return reply("Nomer Yang anda masukkan tidak valid")
@@ -425,14 +419,14 @@ rimurubotz.sendMessage(nyz.phoneNumber.split("+")[1] + "@s.whatsapp.net", {text:
 only("sukses", rimurubotz, from)
 break
 case 'report': case 'bug':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Ada kesalahan/Error Pada fitur? Silahkan masukkan Nama fitur yang bermasalah Kesini\nContoh? #report sticker")
 rimurubotz.sendMessage(owner + "@s.whatsapp.net", {text: `[ *NEW-NOTIF* ]\nHalo *${namaowner}*, Ada keluhan untuk kamu, Dari *@${sender.split("@")[0]}*, Katanya *"${q} Tidak bisa digunakan"*, Dia ngirim pesan ini pas jam ${time}`, mentions:[sender]},{quoted:nay1})
 reply("Terimakasih telah melaporkan bug/error pada fitur, Jika benar Fitur bermasalah owner akan memperbaiki masalah ini secepatnya, Owner akan mengabaikan jika pesan ini palsu")
 break
 case 'technology': case 'cuttext': case 'neonlight': case 'thundertext': case 'transformer': case 'sketchtext': case 'lighttext': 
 case 'giraffetext':  case 'glasstext': case 'signtext': case 'juicetext': case 'typography': case 'potterytext': case 'comictext': case 'ruststyle': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan text")
 if (command == "technology"){ var nyz1 = "https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html" } else if (command == "cuttext"){ var nyz1 = "https://textpro.me/create-art-paper-cut-text-effect-online-1022.html" } else if (command == "neonlight"){ var nyz1 = "https://textpro.me/create-3d-neon-light-text-effect-online-1028.html" } else if (command == "thundertext"){ var nyz1 = "https://textpro.me/online-thunder-text-effect-generator-1031.html" } else if (command == "transformer"){ var nyz1 = "https://textpro.me/create-a-transformer-text-effect-online-1035.html" } else if (command == "sketchtext"){ var nyz1 = "https://textpro.me/create-a-sketch-text-effect-online-1044.html" } else if (command == "lighttext"){ var nyz1 = "https://textpro.me/create-glowing-neon-light-text-effect-online-free-1061.html" } else if (command == "giraffetext"){ var nyz1 = "https://textpro.me/create-3d-giraffe-text-effect-online-1069.html" } else if (command == "glasstext"){ var nyz1 = "https://textpro.me/create-3d-style-glass-text-effect-online-1072.html" } else if (command == "signtext"){ var nyz1 = "https://textpro.me/3d-business-sign-text-effect-1078.html" } else if (command == "juicetext"){ var nyz1 = "https://textpro.me/create-a-3d-orange-juice-text-effect-online-1084.html" } else if (command == "typography"){ var nyz1 = "https://textpro.me/create-artistic-typography-online-1086.html" } else if (command == "potterytext"){ var nyz1 = "https://textpro.me/create-3d-pottery-text-effect-online-1088.html" } else if (command == "comictext"){ var nyz1 = "https://textpro.me/create-3d-comic-text-effects-online-1091.html" } else if (command == "ruststyle"){ var nyz1 = "https://textpro.me/create-a-3d-rust-style-text-effect-online-1093.html" }
 only("proses", rimurubotz, from)
@@ -441,7 +435,7 @@ sendMedia("image", nyz.result.url_file, `[ *TEXTPRO* ]\n• *Title* : ${command}
 break
 case 'steeltext': case 'metalgold': case 'metalgalaxy': case 'rosegold': case 'metalonline': case 'logoonline': case 'stonetext': 
 case 'styletiktok': case 'vintage': case 'graffititext': case 'texteffect': case 'layeredtext': case 'screentext': case 'summertext':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q1 && !q2) return reply("Masukkan text1&text2")
 if (command == "steeltext"){ var nyz1 = "https://textpro.me/3d-steel-text-effect-877.html" } else if (command == "metalgold"){ var nyz1 = "https://textpro.me/text-logo-3d-metal-gold-944.html" } else  if (command == "metalgalaxy"){ var nyz1 = "https://textpro.me/text-logo-3d-metal-galaxy-943.html" } else  if (command == "rosegold"){ var nyz1 = "https://textpro.me/text-logo-3d-metal-rose-gold-945.html" } else if (command == "metalonline"){ var nyz1 = "https://textpro.me/create-text-logo-3d-metal-online-957.html" } else if (command == "logoonline"){ var nyz1 = "https://textpro.me/pornhub-style-logo-online-generator-free-977.html" } else if (command == "stonetext"){ var nyz1 = "https://textpro.me/create-a-stone-text-effect-online-982.html" } else if (command == "styletiktok"){ var nyz1 = "https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html" } else if (command == "vintage"){ var nyz1 = "https://textpro.me/create-realistic-vintage-style-light-bulb-1000.html" } else if (command == "graffititext"){ var nyz1 = "https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html" } else if (command == "texteffect"){ var nyz1 = "https://textpro.me/create-a-glitch-text-effect-online-free-1026.html" } else if (command == "layeredtext"){ var nyz1 = "https://textpro.me/create-layered-text-effects-online-free-1032.html" } else if (command == "screentext"){ var nyz1 = "https://textpro.me/color-led-display-screen-text-effect-1059.html" } else if (command == "summertext"){ var nyz1 = "https://textpro.me/create-a-summer-text-effect-with-a-palm-tree-1083.html" } 
 only("proses", rimurubotz, from) 
@@ -450,7 +444,7 @@ sendMedia("image", nyz.result.url_file, `[ *TEXTPRO* ]\n• *Title* : ${command}
 break
 
 case 'baperin1': case 'baperin2': case 'baperin3': case 'baperin4': case 'baperin5': case 'baperin6': case 'baperin7': case 'baperin8': case 'baperin9':  case 'baperin10': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 var nyz = body.slice(8).trim().split(/ +/).shift().toLowerCase()
 if (Tag() == "") { var x1 = sender.split("@")[0] } else if (isGroup && Tag() !== "") { var x1 = Tag()[0].split("@")[0] }
 if (nyz == 1) { var x = `Jika saja aku harus mengorbankan semua kebahagiaanku hanya untuk sekadar membuat @${x1} tertawa. Aku rela` }
@@ -469,7 +463,7 @@ rimurubotz.sendMessage(from, {text:x, mentions:Tag()},{quoted:nay1})
 break
 
 case 'wangy': case 'sherk': case 'simp': case 'nenen': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (Tag() == "") return reply("tag Orang")
 if (command == "wangy"){ var nyz = await api.stress.wangy("@" + Tag()[0].split("@")[0]) }
 if (command == "nenen"){ var nyz = await api.stress.nenen("@" + Tag()[0].split("@")[0]) }
@@ -479,7 +473,7 @@ rimurubotz.sendMessage(from, {text:nyz, mentions:Tag()},{quoted:nay1})
 break
 
 case 'playmp3': case 'playaudio': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan Query")
 only("proses", rimurubotz, from) 
 var nyz = await api.downloader.youtube.ytplay(q).catch(e => { only("error", rimurubotz, from) })
@@ -487,7 +481,7 @@ var nyz1 = await api.tools.shortlink(nyz.result, makeid(10))
 reply(`[ *PLAY-MP3* ]\nMengirim audio Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri audio Nya ${nyz1.result.url} `)
 break
 case 'playmp4': case 'playvideo': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan Query")
 only("proses", rimurubotz, from) 
 var nyz = await api.downloader.youtube.ytplayvid(q).catch(e => { only("error", rimurubotz, from) })
@@ -495,7 +489,7 @@ var nyz1 = await api.tools.shortlink(nyz.result, makeid(10))
 reply(`[ *PLAY-MP4* ]\nMengirim video Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri video Nya ${nyz1.result.url} `)
 break
 case 'ytvideo': case 'ytmp4':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan Url")
 only("proses", rimurubotz, from) 
 var nyz = await api.downloader.youtube.ytplayvid(q).catch(e => { only("error", rimurubotz, from) })
@@ -503,7 +497,7 @@ var nyz1 = await api.tools.shortlink(nyz.result, makeid(10))
 reply(`[ *YT-MP4* ]\nMengirim video Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri video Nya ${nyz1.result.url} `)
 break
 case 'ytmp3': case 'ytaudio': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan Url")
 only("proses", rimurubotz, from) 
 var nyz = await api.downloader.youtube.ytplay(q).catch(e => { only("error", rimurubotz, from) })
@@ -511,7 +505,7 @@ var nyz1 = await api.tools.shortlink(nyz.result, makeid(10))
 reply(`[ *YT-MP3* ]\nMengirim audio Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri audio Nya ${nyz1.result.url} `)
 break
 case 'tiktokaudio': case 'tiktokmp3':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan Url")
 only("proses", rimurubotz, from) 
 var nyz = await api.downloader.tiktok2(q)
@@ -519,7 +513,7 @@ var nyz1 = await api.tools.shortlink(nyz.audio_original, makeid(10))
 reply(`[ *TIKTOK-MP3* ]\nMengirim audio Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri audio Nya ${nyz1.result.url} `)
 break
 case 'tiktokvideo': case 'tiktokmp4':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan Url")
 only("proses", rimurubotz, from) 
 var nyz = await api.downloader.tiktok2(q)
@@ -528,7 +522,7 @@ reply(`[ *TIKTOK-MP4* ]\nMengirim video Berat tidak dapat dilakukan oleh bot ini
 break
 
 case 'addfoto': case 'addimg': case 'addimage':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedImage) { 
 if (!q) return reply(`Masukkan Query Nama image, Contoh ${prefix + command} megawati`)
 if (args.length !== 1) return reply("Masukkan Query nama image cukup 1 kata, Contoh *Hehehe*")
@@ -539,20 +533,20 @@ reply(`[ *IMAGE-SAVE* ]\nSukses, Image("${q}.jpg") Berhasil terSave di database 
 } else reply(`Kirim image Dengan caption ${prefix + command}`)
 break
 case 'getimg': case 'getimage': case 'getfoto':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply(`Masukkan Query Nama image, List? Gunakan command #listimage`)
 if (cekMedia("image", q) !== q) return reply("Nama Image tersebut tidak terdaftar di database bot, Silahkan cek kembali di #listimage")
 sendMedia("image",`./media/${q}.jpg`)
 break
 case 'listimg': case 'listimage': case 'listfoto':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (ImageMedia.length == 0) return reply("Tidak ada apa apa disini, Silahkan add image terlebih dahulu, Gunakan command #addimage")
 rimurubotz.sendMessage(from, {text: `[ *LIST-IMAGE* ]\n• *Total* : ${ImageMedia.length}`, buttonText: "OPEN", sections:  [{title: "ALL-LIST",
 rows: listMedia("image")}]
 })
 break
 case 'deleteimg': case 'dellimg': case 'deleteimage': case 'dellimage': case 'deletefoto': case 'dellfoto': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan nama image yang ingin dihapus")
 if (cekMedia("image", q) !== q) return reply("Nama Image tersebut tidak terdaftar di database bot, Silahkan cek kembali di #listimage")
@@ -561,7 +555,7 @@ only("sukses", rimurubotz, from)
 break
 
 case 'addvideo': case 'addmp4': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedVideo) {  
 if (!q) return reply(`Masukkan Query Nama Video, Contoh ${prefix + command} megawati`)
 if (args.length !== 1) return reply("Masukkan Query nama video cukup 1 kata, Contoh *Hehehe*")
@@ -572,20 +566,20 @@ reply(`[ *VIDEO-SAVE* ]\nSukses, Video("${q}.mp4") Berhasil terSave di database 
 } else reply(`Kirim Video Dengan caption ${prefix + command}`)
 break
 case 'getvideo': case 'getmp4':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply(`Masukkan Query Nama Video, List? Gunakan command #listvideo`)
 if (cekMedia("video", q) !== q) return reply("Nama video tersebut tidak terdaftar di database bot, Silahkan cek kembali di #listvideo")
 sendMedia("video",`./media/${q}.mp4`)
 break
 case 'listvideo': case 'getmp4': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (VideoMedia.length == 0) return reply("Tidak ada apa apa disini, Silahkan add video terlebih dahulu, Gunakan command #addvideo")
 rimurubotz.sendMessage(from, {text: `[ *LIST-VIDEO* ]\n• *Total* : ${VideoMedia.length}`, buttonText: "OPEN", sections:  [{title: "ALL-LIST",
 rows: listMedia("video")}]
 })
 break
 case 'deletevideo': case 'dellvideo': case 'deletemp4': case 'dellmp4':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan nama video yang ingin dihapus")
 if (cekMedia("video", q) !== q) return reply("Nama video tersebut tidak terdaftar di database bot, Silahkan cek kembali di #listvideo")
@@ -595,7 +589,7 @@ break
 
 
 case 'adds': case 'addstiker': case 'addsticker':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedSticker) { 
 if (!q) return reply(`Masukkan Query Nama sticker, Contoh ${prefix + command} megawati`)
 if (args.length !== 1) return reply("Masukkan Query nama sticker cukup 1 kata, Contoh *Hehehe*")
@@ -606,20 +600,20 @@ reply(`[ *STICKER-SAVE* ]\nSukses, sticker("${q}.webp") Berhasil terSave di data
 } else reply(`Kirim sticker Dengan caption ${prefix + command}`)
 break
 case 'gets': case 'getstiker': case 'getsticker':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply(`Masukkan Query Nama sticker, List? Gunakan command #liststicker`)
 if (cekMedia("sticker", q) !== q) return reply("Nama sticker tersebut tidak terdaftar di database bot, Silahkan cek kembali di #liststicker")
 sendMedia("sticker",`./media/${q}.webp`)
 break
 case 'lists': case 'liststiker': case 'liststicker':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (StickerMedia.length == 0) return reply("Tidak ada apa apa disini, Silahkan add sticker terlebih dahulu, Gunakan command #addsticker")
 rimurubotz.sendMessage(from, {text: `[ *LIST-STICKER* ]\n• *Total* : ${StickerMedia.length}`, buttonText: "OPEN", sections:  [{title: "ALL-LIST",
 rows: listMedia("sticker")}]
 })
 break
 case 'deletes': case 'dells': case 'deletestiker': case 'dellstiker': case 'deletesticker': case 'dellsticker': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan nama sticker yang ingin dihapus")
 if (cekMedia("sticker", q) !== q) return reply("Nama sticker tersebut tidak terdaftar di database bot, Silahkan cek kembali di #liststicker")
@@ -629,7 +623,7 @@ break
 
 
 case 'addaudio': case 'addmp3': case 'addvn':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedAudio) { 
 if (!q) return reply(`Masukkan Query Nama audio, Contoh ${prefix + command} megawati`)
 if (args.length !== 1) return reply("Masukkan Query nama audio cukup 1 kata, Contoh *Hehehe*")
@@ -640,20 +634,20 @@ reply(`[ *AUDIO-SAVE* ]\nSukses, audio("${q}.mp3") Berhasil terSave di database 
 } else reply(`Kirim audio Dengan caption ${prefix + command}`)
 break
 case 'getaudio': case 'getmp3': case 'getvn':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply(`Masukkan Query Nama audio, List? Gunakan command #listaudio`)
 if (cekMedia("audio", q) !== q) return reply("Nama audio tersebut tidak terdaftar di database bot, Silahkan cek kembali di #listaudio")
 sendMedia("audio",`./media/${q}.mp3`)
 break
 case 'listaudio': case 'listmp3': case 'listvn': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (AudioMedia.length == 0) return reply("Tidak ada apa apa disini, Silahkan add audio terlebih dahulu, Gunakan command #addaudio")
 rimurubotz.sendMessage(from, {text: `[ *LIST-AUDIO* ]\n• *Total* : ${AudioMedia.length}`, buttonText: "OPEN", sections:  [{title: "ALL-LIST",
 rows: listMedia("audio")}]
 })
 break
 case 'deleteaudio': case 'dellaudio': case 'deletevn': case 'dellvn': case 'deletemp3': case 'dellmp3': 
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isOwner) return only("isOwner", rimurubotz, from)
 if (!q) return reply("Masukkan nama audio yang ingin dihapus")
 if (cekMedia("audio", q) !== q) return reply("Nama audio tersebut tidak terdaftar di database bot, Silahkan cek kembali di #listaudio")
@@ -662,21 +656,21 @@ only("sukses", rimurubotz, from)
 break
 
 case 'happymod':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan nama Apk")
 var nyz = await api.search.happymod(q)
 reply(await getResult("[ *HAPPYMOD* ]", ["Title","Url"],
 [nyz.result[0].title, nyz.result[0].link]))
 break
 case 'carigrup': case 'carigrub':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan nama Group")
 var nyz = await api.search.carigrup(q) 
 reply(await getResult("[ *SEARCH-GRUP* ]", ["Nama","Url"],
 [nyz.result[0].nama, nyz.result[0].link]))
 break
 case 'kusonime':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan nama anime")
 var nyz = await api.search.kusonime(q) 
 reply(await getResult("[ *KOSUNIME* ]", 
@@ -684,7 +678,7 @@ reply(await getResult("[ *KOSUNIME* ]",
 [nyz.result.judul, nyz.result.desk, nyz.result.genre, nyz.result.status, nyz.result.produser, nyz.result.rate, nyz.result.type, nyz.result.link, nyz.result.total_eps, nyz.result.durasi, nyz.result.tgl_rilis]))
 break
 case 'cuaca':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan nama kota")
 var nyz = await api.search.cuaca(q) 
 reply(await getResult("[ *CUACA* ]",
@@ -692,7 +686,7 @@ reply(await getResult("[ *CUACA* ]",
 [nyz.data.Nama, nyz.data.Longitude, nyz.data.Latitude, nyz.data.Suhu, nyz.data.Angin, nyz.data.Kelembaban, nyz.data.Cuaca, nyz.data.Keterangan, nyz.data.Udara]))
 break
 case 'artinama':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan nama")
 var nyz = await api.search.artinama(q) 
 reply(await getResult("[ *ARTINAMA* ]",
@@ -700,7 +694,7 @@ reply(await getResult("[ *ARTINAMA* ]",
 [nyz.result.split("(adsbygoogle = window.adsbygoogle || []).push({})")[1]]))
 break
 case 'igstalk':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan nama user instagram")
 var nyz = await api.search.igstalk(q) 
 console.log(nyz)
@@ -709,21 +703,21 @@ reply(await getResult("[ *STALKIG* ]",
 [nyz.data.url, nyz.data.fullname, nyz.data.private, nyz.data.verified, nyz.data.bio, nyz.data.follower, nyz.data.following, nyz.data.conneted_fb, nyz.data.videotimeline, nyz.data.timeline, nyz.data.savedmedia, nyz.data.collections ]))
 break
 case 'wallpaper':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan query")
 only("proses", rimurubotz, from)
 var nyz = await api.search.wallpapercave(q) 
 sendMedia("image", nyz.result[0], "😀")
 break
 case 'pinterest':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (!q) return reply("Masukkan kata")
 var nyz = await api.search.pin(q) 
 sendMedia("image", nyz[Math.floor(Math.random() * nyz.length)], "😀")
 break
 
 case 'imagesketch': case 'shit': case 'burn': case 'blur': case 'greyscale': case 'pixelate': case 'removebg': case 'beautiful': case 'trash': case 'jail': case 'wanted': case 'rip': case 'gay': case 'invert':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedImage) { 
 only("proses", rimurubotz, from)
 sendMedia("image", `https://pecundang.herokuapp.com/api/${command}?url=${await download("imageUrl","makers")}`, "😀")
@@ -731,12 +725,12 @@ sendMedia("image", `https://pecundang.herokuapp.com/api/${command}?url=${await d
 break
 
 case 'imagesketchme': case 'shitme': case 'burnme': case 'blurme': case 'greyscaleme': case 'pixelateme': case 'removebgme': case 'beautifulme': case 'trashme': case 'jailme': case 'wantedme': case 'ripme': case 'gayme': case 'invertme':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 only("proses", rimurubotz, from)
 sendMedia("image", `https://pecundang.herokuapp.com/api/${command.split("me")[0]}?url=${await download("PPUrl", sender)}`, "😀")
 break
 case 'imagesketchtag': case 'shittag': case 'burntag': case 'blurtag': case 'greyscaletag': case 'pixelatetag': case 'removebgtag': case 'beautifultag': case 'trashtag': case 'jailtag': case 'wantedtag': case 'riptag': case 'gaytag': case 'inverttag':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (Tag() == "") return reply("tag Orang yang mau anda Jadikan objek")
 only("proses", rimurubotz, from)
 sendMedia("image", `https://pecundang.herokuapp.com/api/${command.split("tag")[0]}?url=${await download("PPUrl", Tag()[0])}`, "😀")
@@ -746,7 +740,7 @@ break
 case 'ttpwhite': case 'ttpyellow': case 'ttpblue': case 'ttpred': case 'ttpgreen': case 'ttpblack': case 'ttpbrown':
 case 'ttpteal': case 'ttpsilver': case 'ttppurple': case 'ttpgray': case 'ttporange': case 'ttpmaroon': case 'ttpaquamarine': case 'ttpcoral': case 'ttpfuchsia': case 'ttpwheat':
 case 'ttplime': case 'ttpcrimson': case 'ttpkhaki': case 'ttpmagenta': case 'ttpplum': case 'ttpolive': case 'ttpcyan':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 var nyz = `https://pecundang.herokuapp.com/api/ttpcolor?teks=${q}&color=${body.slice(4).trim().split(/ +/).shift().toLowerCase()}`
 var nyz1 = await imageToBase64(JSON.stringify(nyz).replace(/\"/gi, ''))
 fs.writeFileSync('getpp.jpeg', nyz1, 'base64')
@@ -762,7 +756,7 @@ break
 case 'meme1': case 'smeme1': case 'memegen1':
 case 'meme2': case 'smeme2': case 'memegen2':
 case 'meme3': case 'smeme3': case 'memegen3':
-if (cekUser("id", sender) == null) return Notdaftar()
+if (cekUser("id", sender) !== null) return Notdaftar()
 if (isMedia || isQuotedImage) { 
 if (command == 'meme1' || command == 'smeme1' || command == 'memegen1') {
 if (!q) return reply("Masukkan Text")
