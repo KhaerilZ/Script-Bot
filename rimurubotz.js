@@ -97,7 +97,7 @@ setUser("±alasan", sender, q)
 break
 case 'menu':
 if (cekUser("id", sender) !== sender) return Notdaftar()
-reply(help(prefix, reply, cekUser, namabot, sender) + cr)
+reply(help(prefix, reply, namabot, sender) + cr)
 var nyz = await fetchJson("https://md-devs.herokuapp.com/versi")
 if (packagejson.description !== nyz.versi){rimurubotz.sendMessage("0@s.whatsapp.net", {text: `[ *UPDATE NEW* ]\n\n• *Info* : Kamu menggunakan Bot versi ${packagejson.description}, Dan sekarang telah tersedia versi Terbaru v${nyz.versi}, Ayo Coba versi yang sudah Terupdate, Link ${nyz.link}`},{quoted:nay1})}
 
