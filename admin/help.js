@@ -10,7 +10,7 @@ menu2 += `┃• *${z + menu1[i]}*\n` })
 var menu3 = `╭━─━•[ *${y}* ]⊱\n${menu2}╰━─━─━─━─━─━─━─•`
 return menu3
 }
-const help = (prefix, reply, namabot, sender) => {
+const help = (prefix, reply, namabot) => {
 var help1 = `╭━─━•[ *${namabot}* ]⊱
 ┃• *User* : @${sender.split("@")[0]}
 ╰━─━─━─━─━─━─━─•
