@@ -153,18 +153,19 @@ if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
+if (!q) return reply("Masukkan Text\n\n*Contoh :* _#tagall Woy kont*l_")
 let teks = `${q ? q : 'kosong'}*\n\n`
-for (let mem of participants) {
+for (let mem of uwong) {
 teks += `⌕ @${mem.id.split('@')[0]}\n`
 }
-rimurubotz.sendMessage(from, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+rimurubotz.sendMessage(from, { text: teks, mentions: uwong.map(a => a.id) }, { quoted: m })
 break
 case 'hidetag':
 if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup) return only("isGroup", rimurubotz, from)
 if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
 if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
-rimurubotz.sendMessage(from, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+rimurubotz.sendMessage(from, { text : q ? q : '' , mentions: uwong.map(a => a.id)}, { quoted: m })
 break
 case 'delete':
 if (cekUser("id", sender) !== null) return Notdaftar()
