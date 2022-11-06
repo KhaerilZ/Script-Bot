@@ -95,6 +95,15 @@ reply(`[ *SUKSES AFK* ]\n• *User* : @${sender.split("@")[0]}\n• *Alasan* : $
 setUser("±afk", sender, true)
 setUser("±alasan", sender, q)
 break
+case 'join':
+if (!isOwner) return only("isOwner", rimurubotz, from)
+if (!q) return reply("Masukkan Link Group\n\n*contoh :* _#join https://chat.whatsapp.com/Hkddwn4OFxwJPkAVRh1rpA_")
+if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) throw 'Link Invalid!'
+reply(wait)
+let result = args[0].split('https://chat.whatsapp.com/')[1]
+await rimurubotz.groupAcceptInvite(result).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
+break
+
 case 'menu':
 if (cekUser("id", sender) !== null) return Notdaftar()
 reply(help(prefix, reply, namabot, sender) + cr)
@@ -505,19 +514,19 @@ reply(`[ *YT-MP3* ]\nMengirim audio Berat tidak dapat dilakukan oleh bot ini, Si
 break
 case 'tiktokaudio': case 'tiktokmp3':
 if (cekUser("id", sender) !== null) return Notdaftar()
-if (!q) return reply("Masukkan Url")
-only("proses", rimurubotz, from) 
-var nyz = await api.downloader.tiktok2(q)
-var nyz1 = await api.tools.shortlink(nyz.audio_original, makeid(10))
-reply(`[ *TIKTOK-MP3* ]\nMengirim audio Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri audio Nya ${nyz1.result.url} `)
+if (!q) return reply("Command ini Sedang Error")
+//only("proses", rimurubotz, from) 
+//var nyz = await api.downloader.tiktok2(q)
+//var nyz1 = await api.tools.shortlink(nyz.audio_original, makeid(10))
+//reply(`[ *TIKTOK-MP3* ]\nMengirim audio Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri audio Nya ${nyz1.result.url} `)
 break
 case 'tiktokvideo': case 'tiktokmp4':
 if (cekUser("id", sender) !== null) return Notdaftar()
-if (!q) return reply("Masukkan Url")
-only("proses", rimurubotz, from) 
-var nyz = await api.downloader.tiktok2(q)
-var nyz1 = await api.tools.shortlink(nyz.nowm, makeid(10))
-reply(`[ *TIKTOK-MP4* ]\nMengirim video Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri video Nya ${nyz1.result.url} `)
+if (!q) return reply("Command ini Sedang Error")
+//only("proses", rimurubotz, from) 
+//var nyz = await api.downloader.tiktok2(q)
+//var nyz1 = await api.tools.shortlink(nyz.nowm, makeid(10))
+//reply(`[ *TIKTOK-MP4* ]\nMengirim video Berat tidak dapat dilakukan oleh bot ini, Silahkan Download sendiri video Nya ${nyz1.result.url} `)
 break
 
 case 'addfoto': case 'addimg': case 'addimage':
@@ -773,7 +782,7 @@ var nyz1 = await imageToBase64(JSON.stringify(nyz).replace(/\"/gi, ''))
 fs.writeFileSync('getpp.jpeg', nyz1, 'base64')
 await ffmpeg("getpp.jpeg")
 .input("getpp.jpeg")
-.on('error', function (error) { only("error", rimurubotz, from) })
+.on('error', function (error) { only("error", rimurubotz, from) }reply("Jangan Memakai simbol/emoji pada text"))
 .on('end', function () {rimurubotz.sendMessage(from, { sticker: {url: './getpp.webp'}, mimetype: 'image/webp' })})
 .addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 .toFormat('webp')
@@ -786,7 +795,7 @@ default:
 if (isGroup && dataOnly("antilink", "cek", from) == from){
 if (budy.includes("https")) { reply("Huh?") } 
 if (budy.includes("http")) { reply("Huh?") } 
-if (budy.includes("wa.me")) { reply("Huh?") } 
+if (budy.includes("wa.me")) { reply("@${groupAdmins.split("@")[0]} ada yang ngirim link group") } 
 if (budy.includes(".com")) { reply("Huh?") } 
 if (budy.includes(".id")) { reply("Huh?") } 
 if (budy.includes(".me")) { reply("Huh?") } 
