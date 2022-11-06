@@ -148,6 +148,24 @@ if (cekUser("id", sender) !== null) return reply("Kamu sudah terdaftar sebelumny
 reply("_Fitur *Daftar* Sudah di hapus silahkan #menu untuk memulai bot😊_")
 break
 
+case 'tagall':
+if (cekUser("id", sender) !== null) return Notdaftar()
+if (!isGroup) return only("isGroup", rimurubotz, from)
+if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
+if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
+let teks = `${q ? q : 'kosong'}*\n\n`
+for (let mem of participants) {
+teks += `⌕ @${mem.id.split('@')[0]}\n`
+}
+rimurubotz.sendMessage(from, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+break
+case 'hidetag':
+if (cekUser("id", sender) !== null) return Notdaftar()
+if (!isGroup) return only("isGroup", rimurubotz, from)
+if (!isGroupAdmins) return only("isGroupAdmins", rimurubotz, from)
+if (!isBotGroupAdmins) return only("isBotGroupAdmins", rimurubotz, from)
+rimurubotz.sendMessage(from, { text : q ? q : '' , mentions: participants.map(a => a.id)}, { quoted: m })
+break
 case 'delete':
 if (cekUser("id", sender) !== null) return Notdaftar()
 if (!isGroup){
